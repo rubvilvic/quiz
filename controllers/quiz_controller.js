@@ -69,6 +69,29 @@ exports.answer = function(req, res){
 		{quiz: req.quiz, respuesta: resultado});
 }
 
+//GET /quizes/new
+exports.new = function(req, res){
+	var quiz = models.Quiz.build(
+		{
+			pregunta: "Pregunta",
+			respuesta: "Respuesta"
+		}
+	);
+
+	res.render('quizes/new', {quiz: quiz});
+}
+
+//POST /quizes/create
+exports.create = function(req, res){
+	var quiz = models.Quiz.build( req.body.quiz);
+
+	quiz.save(
+		{fields: ["pregunta", "respuesta"]}
+	).then(function(){
+		res.redirect("/quizes");
+	});
+}
+
 //GET /author
 exports.author = function(req, res){
 	res.render('author', {autor: "Rubén Villagarcía Vicente", url_github: "https://github.com/rubvilvic/"});
