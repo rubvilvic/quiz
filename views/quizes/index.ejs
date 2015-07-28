@@ -4,11 +4,18 @@
 	for(i=0; i< quizes.length; i++){ 
 	%>
 		<tr>
-			<td>
+			<td align="right" width="50%">
 				<a href="quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a>
 			</td>
-			<td>
+			<td align="right" width="25%">
 				<a href="quizes/<%=quizes[i].id%>/edit"><button>editar</button></a>
+			</td>
+			<td align="left" width="25%">
+				<form method="post" action="quizes/<%=quizes[i].id%>?_method=delete">
+					<button type="submit" onClick="return confirm('Borrar: <%=quizes[i].pregunta%>');">
+						borrar
+					</button>
+				</form>
 			</td>
 		</tr>
 	<%
@@ -18,7 +25,10 @@
 		<td>&nbsp;</td>
 	</tr>
 	<tr>
-		<td>
+		<td align="right">
+			<a href="/quizes/new"><button type="button">Crear pregunta</button></a>
+		</td>
+		<td align="center" colspan="2">
 			<form method="get" action="/quizes" >
 				<input type="text" name="search" placeholder="Busca una pregunta"/>
 				<input type="submit" value="Buscar"/> 
@@ -26,6 +36,3 @@
 		</td>
 	</tr>
 </table>
-<p>
-	<a href="/quizes/new"><button type="button">Crear pregunta</button></a>
-</p>

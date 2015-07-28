@@ -36,7 +36,6 @@ exports.load = function(req, res, next, quizId){
 //GET /quizes
 exports.index = function(req, res){
 
-	console.log("Busqueda: " + req.query.search);
 	var busqueda = req.query.search;
 	if(busqueda !== null && busqueda !== undefined){
 		var busqueda = "%" + busqueda.replace(" ", "%") + "%";
@@ -108,6 +107,19 @@ exports.edit = function(req, res){
 	var quiz = req.quiz;
 
 	res.render('quizes/edit', {quiz: quiz, errors: []});
+}
+
+//DELETE /quizes/:id
+exports.destroy = function(req, res){
+	req.quiz.destroy().then(
+		function(){
+			res.redirect('/quizes');
+		}
+	).catch(
+		function(error){
+			next(error);
+		}
+	);
 }
 
 //PUT /quizes/:id
