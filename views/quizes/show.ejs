@@ -3,7 +3,26 @@
 	Pregunta: <%= quiz.pregunta %><p>
 	<input type="text" name="respuesta" placeholder="Escriba su respuesta aquí">
 	<input type="submit" value="Enviar"/><p>
-	<p>
-	<a href="/quizes"><button type="button">Volver</button></a>
-	</p>
 </form>
+	<p>
+		<a href="/quizes"><button type="button">Volver</button></a>
+	</p>
+	<p>
+		<a href="/quizes/<%=quiz.id%>/comments/new">
+			<button>Nuevo Comentario</button>
+		</a>
+	</p>
+
+	<p>
+		<strong>Comentarios:</strong>
+	</p>
+	<%
+	for (index in quiz.Comments){
+	%>
+		<p>- <%=quiz.Comments[index].texto%></p>
+	<%
+	}
+	%>
+
+
+	
